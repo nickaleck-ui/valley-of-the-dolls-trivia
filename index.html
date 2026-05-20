@@ -1,0 +1,2097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valley of the Dolls — Trivia</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='5' y='30' width='90' height='40' rx='20' fill='%239B4FC8'/><rect x='50' y='30' width='45' height='40' rx='0' fill='%23E8156A'/><rect x='70' y='30' width='25' height='40' rx='20' fill='%23E8156A'/><line x1='50' y1='30' x2='50' y2='70' stroke='white' stroke-width='3' opacity='0.5'/><text x='62' y='38' font-size='36'>✨</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=DM+Serif+Display:ital@0;1&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink:     #F4A7C0;
+    --hot:      #E8156A;
+    --bubblegum:#F7C5D5;
+    --deep-pink:#C0005A;
+    --pill-red:   #D93B3B;
+    --pill-purple:#9B4FC8;
+    --pill-yellow:#E8C034;
+    --pill-pink:  #E05A8A;
+    --pill-orange:#E0713A;
+    --pill-teal:  #3AA8A0;
+    --cream:    #FFF5F8;
+    --black:    #1A0A10;
+    --offblack:  #2D1220;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bubblegum);
+    font-family: 'Nunito', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    cursor: default;
+  }
+
+  /* ── FLOATING CAPSULES BG ───────────────────────────── */
+  .capsule-stage {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .cap {
+    position: absolute;
+    border-radius: 50px;
+    opacity: 0.55;
+    animation: floatCap linear infinite;
+    transform-origin: center;
+  }
+
+  @keyframes floatCap {
+    0%   { transform: translateY(110vh) rotate(var(--r0)); }
+    100% { transform: translateY(-15vh) rotate(var(--r1)); }
+  }
+
+  /* ── LAYOUT ─────────────────────────────────────────── */
+  #app {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 18px 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* ── MASTHEAD ────────────────────────────────────────── */
+  .masthead {
+    text-align: center;
+    padding: 36px 0 0;
+    width: 100%;
+  }
+
+  .eyebrow {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 0.72rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--hot);
+    margin-bottom: 6px;
+  }
+
+  /* The big chunky pink-cover style title */
+  .big-title {
+    font-family: 'Abril Fatface', cursive;
+    font-size: clamp(4.5rem, 18vw, 9.5rem);
+    line-height: 0.88;
+    color: var(--black);
+    letter-spacing: -2px;
+    position: relative;
+    display: inline-block;
+  }
+
+  /* pill windows cut into the title area — purely decorative */
+  .title-pill-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 6px 0 4px;
+  }
+
+  .title-pill {
+    width: 80px;
+    height: 32px;
+    border-radius: 50px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 2px 3px 0 rgba(0,0,0,0.18);
+  }
+
+  .title-pill::before,
+  .title-pill::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 50%;
+  }
+
+  .title-pill::before { left: 0; }
+  .title-pill::after  { right: 0; border-left: 2px solid rgba(255,255,255,0.4); }
+
+  .of-the {
+    font-family: 'Abril Fatface', cursive;
+    font-size: clamp(2rem, 7vw, 4rem);
+    color: white;
+    line-height: 1;
+    text-shadow: 3px 3px 0 rgba(0,0,0,0.15);
+  }
+
+  .tagline {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--deep-pink);
+    margin: 10px 0 28px;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── SCREENS ────────────────────────────────────────── */
+  .screen { width: 100%; animation: fadeUp 0.4s ease; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hidden { display: none !important; }
+
+  /* ── START CARD ─────────────────────────────────────── */
+  .start-card {
+    background: white;
+    border-radius: 24px;
+    padding: 36px 32px;
+    border: 3px solid var(--black);
+    box-shadow: 6px 6px 0 var(--black);
+    margin-bottom: 24px;
+    position: relative;
+  }
+
+  .start-intro {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--offblack);
+    margin-bottom: 22px;
+    font-weight: 600;
+  }
+
+  .stats-row {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    margin: 0 0 24px;
+    border: 2px solid var(--black);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .stat-item {
+    flex: 1;
+    text-align: center;
+    padding: 16px 10px;
+    background: var(--bubblegum);
+    border-right: 2px solid var(--black);
+  }
+
+  .stat-item:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: 'Abril Fatface', cursive;
+    font-size: 2.8rem;
+    color: var(--hot);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.68rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: var(--black);
+    margin-top: 2px;
+  }
+
+  .categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 0;
+  }
+
+  .cat-badge {
+    padding: 5px 14px;
+    border-radius: 30px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border: 2px solid var(--black);
+  }
+
+  .cat-book     { background: #FFF0A0; color: var(--black); }
+  .cat-film     { background: #FFB3CC; color: var(--black); }
+  .cat-casting  { background: #C5A0F5; color: var(--black); }
+  .cat-behind   { background: #A0E0F5; color: var(--black); }
+  .cat-legacy   { background: #A0F5C5; color: var(--black); }
+  .cat-quotes   { background: #FFD4A0; color: var(--black); }
+
+  /* ── BIG PINK BUTTON ─────────────────────────────────── */
+  .btn-main {
+    background: var(--hot);
+    color: white;
+    border: 3px solid var(--black);
+    padding: 16px 44px;
+    border-radius: 50px;
+    font-family: 'Abril Fatface', cursive;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 5px 5px 0 var(--black);
+    transition: transform 0.1s, box-shadow 0.1s;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .btn-main:hover  { transform: translate(-2px,-2px); box-shadow: 7px 7px 0 var(--black); }
+  .btn-main:active { transform: translate(3px,3px);   box-shadow: 2px 2px 0 var(--black); }
+
+  .btn-secondary {
+    background: white;
+    color: var(--black);
+    border: 3px solid var(--black);
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-family: 'Abril Fatface', cursive;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 4px 4px 0 var(--black);
+    transition: transform 0.1s, box-shadow 0.1s;
+  }
+
+  .btn-secondary:hover  { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--black); }
+  .btn-secondary:active { transform: translate(2px,2px);   box-shadow: 2px 2px 0 var(--black); }
+
+  /* ── LOADING ────────────────────────────────────────── */
+  .loading {
+    text-align: center;
+    padding: 70px 20px;
+  }
+
+  .loading-title {
+    font-family: 'Abril Fatface', cursive;
+    font-size: 1.8rem;
+    color: var(--hot);
+    margin-bottom: 6px;
+  }
+
+  .loading-sub {
+    font-size: 0.9rem;
+    color: var(--deep-pink);
+    font-style: italic;
+    margin-bottom: 28px;
+    font-family: 'DM Serif Display', serif;
+  }
+
+  .pill-loader {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .pill-loader-item {
+    width: 38px;
+    height: 16px;
+    border-radius: 20px;
+    border: 2px solid var(--black);
+    animation: pillPulse 1.1s ease-in-out infinite;
+  }
+
+  .pill-loader-item:nth-child(2) { animation-delay: 0.18s; }
+  .pill-loader-item:nth-child(3) { animation-delay: 0.36s; }
+
+  @keyframes pillPulse {
+    0%,100% { transform: scale(0.8); opacity: 0.5; }
+    50%      { transform: scale(1.15); opacity: 1; }
+  }
+
+  /* ── QUIZ META BAR ───────────────────────────────────── */
+  .quiz-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 12px;
+  }
+
+  .q-counter {
+    font-family: 'Abril Fatface', cursive;
+    font-size: 1.1rem;
+    color: var(--black);
+  }
+
+  .score-label {
+    background: var(--hot);
+    color: white;
+    border: 2px solid var(--black);
+    border-radius: 30px;
+    padding: 4px 16px;
+    font-family: 'Abril Fatface', cursive;
+    font-size: 1.05rem;
+    box-shadow: 3px 3px 0 var(--black);
+  }
+
+  /* Lives row */
+  .lives-row {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+
+  .life-cap {
+    width: 28px;
+    height: 12px;
+    border-radius: 20px;
+    border: 2px solid var(--black);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.15);
+  }
+
+  .life-cap::before, .life-cap::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 50%;
+  }
+
+  .life-cap::after { right: 0; border-left: 1.5px solid rgba(255,255,255,0.35); }
+
+  .life-cap.red    { background: var(--pill-red); }
+  .life-cap.red::before { background: var(--pill-red); }
+  .life-cap.red::after  { background: #c02020; }
+
+  .life-cap.used {
+    background: rgba(0,0,0,0.1) !important;
+    border-color: rgba(0,0,0,0.2);
+    box-shadow: none;
+  }
+  .life-cap.used::before, .life-cap.used::after { background: transparent !important; }
+
+  /* Progress track */
+  .progress-track {
+    width: 100%;
+    height: 10px;
+    background: white;
+    border: 2px solid var(--black);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--hot);
+    border-radius: 8px;
+    transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  /* ── QUESTION CARD ───────────────────────────────────── */
+  .q-card {
+    background: white;
+    border: 3px solid var(--black);
+    border-radius: 24px;
+    padding: 28px 28px 24px;
+    margin-bottom: 16px;
+    box-shadow: 6px 6px 0 var(--black);
+    width: 100%;
+    position: relative;
+  }
+
+  .q-cat-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 13px;
+    border-radius: 20px;
+    font-size: 0.67rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border: 2px solid var(--black);
+    margin-bottom: 14px;
+  }
+
+  .q-text {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.1rem, 3.5vw, 1.35rem);
+    line-height: 1.45;
+    color: var(--black);
+    margin-bottom: 6px;
+  }
+
+  .q-source {
+    font-size: 0.72rem;
+    color: rgba(0,0,0,0.35);
+    font-style: italic;
+    letter-spacing: 0.5px;
+  }
+
+  .q-media-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  .media-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-decoration: none;
+    border: 2px solid var(--black);
+    transition: transform 0.1s, box-shadow 0.1s;
+    box-shadow: 3px 3px 0 var(--black);
+  }
+
+  .media-btn:hover { transform: translate(-1px,-1px); box-shadow: 4px 4px 0 var(--black); }
+  .media-btn:active { transform: translate(1px,1px); box-shadow: 1px 1px 0 var(--black); }
+
+  .media-btn.yt { background: #FF4444; color: white; }
+  .media-btn.sp { background: #1DB954; color: white; }
+
+  /* ── ANSWERS ─────────────────────────────────────────── */
+  .answers-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+    width: 100%;
+  }
+
+  @media (max-width: 480px) { .answers-grid { grid-template-columns: 1fr; } }
+
+  .ans-btn {
+    background: white;
+    border: 3px solid var(--black);
+    border-radius: 16px;
+    padding: 14px 14px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.93rem;
+    font-weight: 700;
+    color: var(--black);
+    cursor: pointer;
+    text-align: left;
+    line-height: 1.4;
+    transition: transform 0.1s, box-shadow 0.1s, background 0.15s;
+    box-shadow: 4px 4px 0 var(--black);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .ans-btn:hover:not(:disabled) {
+    background: var(--bubblegum);
+    transform: translate(-2px,-2px);
+    box-shadow: 6px 6px 0 var(--black);
+  }
+
+  .ans-btn:active:not(:disabled) {
+    transform: translate(2px,2px);
+    box-shadow: 2px 2px 0 var(--black);
+  }
+
+  .ans-letter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--bubblegum);
+    border: 2px solid var(--black);
+    font-family: 'Abril Fatface', cursive;
+    font-size: 0.85rem;
+    color: var(--black);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .ans-btn.correct {
+    background: #AAFFC0;
+    box-shadow: 4px 4px 0 var(--black);
+  }
+
+  .ans-btn.wrong {
+    background: #FFAAAA;
+    box-shadow: 4px 4px 0 var(--black);
+  }
+
+  .ans-btn.reveal-correct {
+    background: #DFFFEA;
+    border-style: dashed;
+  }
+
+  .ans-btn:disabled { cursor: default; }
+
+  /* ── FEEDBACK PANEL ──────────────────────────────────── */
+  .feedback-panel {
+    background: var(--bubblegum);
+    border: 3px solid var(--black);
+    border-radius: 20px;
+    padding: 22px 24px;
+    margin-bottom: 14px;
+    width: 100%;
+    box-shadow: 5px 5px 0 var(--black);
+    display: none;
+    animation: popIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  }
+
+  .feedback-panel.show { display: block; }
+
+  @keyframes popIn {
+    0%   { transform: scale(0.88); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  .feedback-result {
+    font-family: 'Abril Fatface', cursive;
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+    line-height: 1.1;
+  }
+
+  .feedback-result.correct { color: #1A8C3A; }
+  .feedback-result.wrong   { color: var(--hot); }
+
+  .feedback-explain {
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: var(--offblack);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .fun-fact {
+    background: #FFF0A0;
+    border: 2px solid var(--black);
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-size: 0.83rem;
+    font-weight: 700;
+    color: var(--black);
+    margin: 10px 0;
+    display: none;
+  }
+
+  .fun-fact.show { display: block; }
+
+  .feedback-media {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  /* ── STREAK BADGE ────────────────────────────────────── */
+  .streak-badge {
+    position: fixed;
+    top: 18px;
+    right: 18px;
+    z-index: 99;
+    background: var(--pill-yellow);
+    border: 3px solid var(--black);
+    border-radius: 50px;
+    padding: 8px 18px;
+    font-family: 'Abril Fatface', cursive;
+    font-size: 1.1rem;
+    color: var(--black);
+    box-shadow: 4px 4px 0 var(--black);
+    opacity: 0;
+    transform: scale(0.7) rotate(-5deg);
+    transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    pointer-events: none;
+  }
+
+  .streak-badge.show {
+    opacity: 1;
+    transform: scale(1) rotate(-3deg);
+  }
+
+  /* ── RESULTS ────────────────────────────────────────── */
+  .results-card {
+    background: white;
+    border: 3px solid var(--black);
+    border-radius: 28px;
+    padding: 44px 32px;
+    text-align: center;
+    box-shadow: 7px 7px 0 var(--black);
+    margin-bottom: 20px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Zigzag top border decoration */
+  .results-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 8px;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--pill-red)    0px, var(--pill-red)    20px,
+      var(--pill-purple) 20px, var(--pill-purple) 40px,
+      var(--pill-yellow) 40px, var(--pill-yellow) 60px,
+      var(--pill-pink)   60px, var(--pill-pink)   80px,
+      var(--pill-teal)   80px, var(--pill-teal)   100px
+    );
+  }
+
+  .result-tagline {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: clamp(1.3rem, 4vw, 1.9rem);
+    color: var(--hot);
+    margin: 16px 0 8px;
+    line-height: 1.2;
+  }
+
+  .score-big {
+    font-family: 'Abril Fatface', cursive;
+    font-size: clamp(5rem, 18vw, 9rem);
+    color: var(--black);
+    line-height: 0.9;
+    margin: 6px 0 4px;
+    /* big shadow stack like the cover typography */
+    text-shadow: 4px 4px 0 var(--hot);
+  }
+
+  .score-fraction {
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.4);
+    margin-bottom: 18px;
+  }
+
+  .result-msg {
+    font-size: 0.97rem;
+    font-weight: 600;
+    line-height: 1.7;
+    color: var(--offblack);
+    max-width: 420px;
+    margin: 0 auto 26px;
+  }
+
+  .result-breakdown {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    border: 2px solid var(--black);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 28px;
+  }
+
+  .bd-item {
+    flex: 1;
+    padding: 14px 8px;
+    text-align: center;
+    background: var(--bubblegum);
+    border-right: 2px solid var(--black);
+  }
+
+  .bd-item:last-child { border-right: none; }
+
+  .bd-num {
+    font-family: 'Abril Fatface', cursive;
+    font-size: 2.2rem;
+    line-height: 1;
+  }
+
+  .bd-num.g { color: #1A8C3A; }
+  .bd-num.r { color: var(--hot); }
+  .bd-num.y { color: #B07A00; }
+
+  .bd-label {
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--black);
+    margin-top: 3px;
+    opacity: 0.6;
+  }
+
+  .result-btns {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* ── SHARE SECTION ───────────────────────────────────── */
+  .share-section {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .share-label {
+    font-family: 'Abril Fatface', cursive;
+    font-size: 1rem;
+    color: var(--black);
+    text-align: center;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  /* Canvas preview card */
+  #shareCanvas {
+    display: block;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto 14px;
+    border: 3px solid var(--black);
+    border-radius: 16px;
+    box-shadow: 5px 5px 0 var(--black);
+    cursor: pointer;
+  }
+
+  .share-hint {
+    text-align: center;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.4);
+    margin-bottom: 14px;
+  }
+
+  .share-btns {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+
+  .share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 11px 20px;
+    border-radius: 50px;
+    border: 3px solid var(--black);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 0.82rem;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    box-shadow: 4px 4px 0 var(--black);
+    transition: transform 0.1s, box-shadow 0.1s;
+    text-decoration: none;
+  }
+
+  .share-btn:hover  { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--black); }
+  .share-btn:active { transform: translate(2px,2px);   box-shadow: 2px 2px 0 var(--black); }
+
+  .share-btn.download { background: var(--pill-yellow); color: var(--black); }
+  .share-btn.twitter  { background: #000000; color: white; }
+  .share-btn.facebook { background: #1877F2; color: white; }
+  .share-btn.copy     { background: white; color: var(--black); }
+  .share-btn.copy.copied { background: #AAFFC0; }
+
+  /* ── CONFETTI PILLS ──────────────────────────────────── */
+  .conf-pill {
+    position: fixed;
+    border-radius: 30px;
+    pointer-events: none;
+    z-index: 200;
+    animation: confPill var(--dur) ease-in forwards;
+  }
+
+  @keyframes confPill {
+    0%   { transform: translateY(-10px) rotate(var(--r0)); opacity: 1; }
+    100% { transform: translateY(110vh) rotate(var(--r1)); opacity: 0.2; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- floating background capsules -->
+<div class="capsule-stage" id="capStage"></div>
+
+<!-- streak badge -->
+<div class="streak-badge" id="streakBadge">🔥 <span id="streakNum">3</span> IN A ROW!</div>
+
+<div id="app">
+
+  <!-- ─── MASTHEAD ─────────────────────── -->
+  <div class="masthead">
+    <div class="eyebrow">✦ The Ultimate ✦</div>
+    <div class="big-title">Valley</div>
+
+    <!-- pill windows row — decorative, referencing the book cover -->
+    <div class="title-pill-row">
+      <div class="title-pill" style="background:var(--pill-red);">
+        <div style="position:absolute;inset:0;left:0;width:50%;background:var(--pill-red);"></div>
+        <div style="position:absolute;inset:0;left:50%;background:#B02020;"></div>
+      </div>
+      <div class="title-pill" style="background:var(--pill-purple);">
+        <div style="position:absolute;inset:0;left:0;width:50%;background:var(--pill-purple);"></div>
+        <div style="position:absolute;inset:0;left:50%;background:#6B2A9A;"></div>
+      </div>
+      <div class="title-pill" style="background:var(--pill-yellow);">
+        <div style="position:absolute;inset:0;left:0;width:50%;background:var(--pill-yellow);"></div>
+        <div style="position:absolute;inset:0;left:50%;background:#B08A00;"></div>
+      </div>
+    </div>
+
+    <div class="of-the">of the</div>
+    <div class="big-title">Dolls</div>
+    <div class="tagline">The book. The film. The drama. Take your quiz, darling.</div>
+  </div>
+
+  <!-- ─── START SCREEN ─────────────────── -->
+  <div id="startScreen" class="screen" style="margin-top:12px;">
+    <div class="start-card">
+      <p class="start-intro">
+        Darling, do you have what it takes to survive the Valley? 💊 From Jacqueline Susann's scandalous bestseller to the camp classic film — this is the trivia game that bites back.
+      </p>
+
+      <div class="stats-row">
+        <div class="stat-item">
+          <div class="stat-num">80</div>
+          <div class="stat-label">Questions</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">20</div>
+          <div class="stat-label">Per Game</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">5</div>
+          <div class="stat-label">Categories</div>
+        </div>
+      </div>
+
+      <div class="categories">
+        <span class="cat-badge cat-book">📖 The Book</span>
+        <span class="cat-badge cat-film">🎬 The Film</span>
+        <span class="cat-badge cat-casting">⭐ Casting Drama</span>
+        <span class="cat-badge cat-behind">🎭 Behind the Scenes</span>
+        <span class="cat-badge cat-legacy">👑 Legacy & Camp</span>
+      </div>
+    </div>
+
+    <button class="btn-main" onclick="startGame()">Take Your Dolls & Play</button>
+    <div style="height:40px;"></div>
+  </div>
+
+  <!-- ─── LOADING SCREEN ───────────────── -->
+  <div id="loadingScreen" class="screen hidden" style="margin-top:40px;">
+    <div class="loading">
+      <div class="loading-title">Shaking the Bottle…</div>
+      <div class="loading-sub">"I am the Valley, darling."</div>
+      <div class="pill-loader">
+        <div class="pill-loader-item" style="background:var(--pill-red);"></div>
+        <div class="pill-loader-item" style="background:var(--pill-purple);"></div>
+        <div class="pill-loader-item" style="background:var(--pill-yellow);"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── QUIZ SCREEN ──────────────────── -->
+  <div id="quizScreen" class="screen hidden" style="margin-top:16px; width:100%;">
+
+    <div class="quiz-topbar">
+      <div style="display:flex; flex-direction:column; gap:5px;">
+        <div class="q-counter">Q <span id="qNum">1</span> <span style="opacity:0.4;">/ 20</span></div>
+        <div class="lives-row" id="livesRow"></div>
+      </div>
+      <div class="score-label">Score: <span id="scoreNum">0</span></div>
+    </div>
+
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill" style="width:0%"></div>
+    </div>
+
+    <!-- question card -->
+    <div class="q-card" id="qCard">
+      <div class="q-cat-tag cat-book" id="qCatTag">📖 The Book</div>
+      <div class="q-text" id="qText"></div>
+      <div class="q-source" id="qSource"></div>
+      <div class="q-media-links" id="qMediaLinks"></div>
+    </div>
+
+    <!-- answers -->
+    <div class="answers-grid" id="answersGrid"></div>
+
+    <!-- feedback -->
+    <div class="feedback-panel" id="feedbackPanel">
+      <div class="feedback-result" id="feedbackResult"></div>
+      <div class="feedback-explain" id="feedbackExplain"></div>
+      <div class="fun-fact" id="funFact"></div>
+      <div class="feedback-media" id="feedbackMedia"></div>
+      <div style="margin-top:16px;">
+        <button class="btn-main" id="nextBtn" onclick="nextQuestion()" style="width:100%; border-radius:14px; font-size:1.15rem;">
+          Next Question →
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ─── RESULTS SCREEN ───────────────── -->
+  <div id="resultsScreen" class="screen hidden" style="margin-top:16px; width:100%;">
+    <div class="results-card">
+      <div class="result-tagline" id="resultTagline"></div>
+      <div class="score-big" id="scoreBig"></div>
+      <div class="score-fraction" id="scoreFraction"></div>
+      <div class="result-msg" id="resultMsg"></div>
+      <div class="result-breakdown" id="resultBreakdown"></div>
+    </div>
+    <!-- Share card -->
+    <div class="share-section" id="shareSection">
+      <div class="share-label">💅 Share Your Score, Darling</div>
+      <canvas id="shareCanvas" height="480"></canvas>
+      <div class="share-hint">Tap card to save · or use buttons below</div>
+      <div class="share-btns">
+        <button class="share-btn download" onclick="downloadCard()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Save Image
+        </button>
+        <button class="share-btn twitter" onclick="shareTwitter()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          Post on X
+        </button>
+        <button class="share-btn facebook" onclick="shareFacebook()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          Share on Facebook
+        </button>
+        <button class="share-btn copy" id="copyBtn" onclick="copyShareText()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy Text
+        </button>
+      </div>
+    </div>
+
+    <div class="result-btns">
+      <button class="btn-main" onclick="startGame()">Play Again, Darling</button>
+      <button class="btn-secondary" onclick="showStart()">Back to Start</button>
+    </div>
+    <div style="height:50px;"></div>
+  </div>
+
+</div><!-- /app -->
+
+<script>
+// ═══════════════════════════════════════════
+// QUESTION LIBRARY — 80 Questions
+// ═══════════════════════════════════════════
+const QUESTIONS = [
+  // ── THE BOOK ──────────────────────────────────────────
+  { id:1, cat:"book", catLabel:"📖 The Book",
+    q:"In what year was Jacqueline Susann's 'Valley of the Dolls' first published?",
+    a:["1963","1966","1969","1971"], correct:1,
+    explain:"Published in 1966 by Bernard Geis Associates, the novel shot to the top of bestseller lists within weeks.",
+    fact:"It spent 65 consecutive weeks on the NYT bestseller list.",
+    src:"The Novel",
+    sp:"https://open.spotify.com/track/2nJGMVAD0qNe2uy8ztHvAf", spLabel:"Dionne Warwick — Valley of the Dolls Theme" },
+
+  { id:2, cat:"book", catLabel:"📖 The Book",
+    q:"What small New England town does Anne Welles flee at the start of the novel?",
+    a:["Lawrenceville, MA","Radcliffe, CT","Stoneham, VT","Hartfield, NH"], correct:0,
+    explain:"Anne escapes the stifling propriety of Lawrenceville, Massachusetts, for the bright lights of New York City.",
+    src:"The Novel" },
+
+  { id:3, cat:"book", catLabel:"📖 The Book",
+    q:"What is the street slang for pills used throughout the novel?",
+    a:["Candy","Stars","Dolls","Buttons"], correct:2,
+    explain:"'Dolls' is Susann's slang — uppers, downers, sleeping pills — the chemical comfort that consumes her heroines.",
+    fact:"The title phrase refers to a pill-induced stupor: the 'valley' is the numb low point of dependency.",
+    src:"The Novel" },
+
+  { id:4, cat:"book", catLabel:"📖 The Book",
+    q:"Which character is most widely understood to be based on Judy Garland?",
+    a:["Anne Welles","Neely O'Hara","Jennifer North","Helen Lawson"], correct:1,
+    explain:"Neely O'Hara — brilliant, self-destructive, pill-addicted — maps onto Garland's trajectory with uncomfortable precision.",
+    fact:"Garland was reportedly furious about the comparison, and Susann denied it publicly until she didn't.",
+    src:"The Novel" },
+
+  { id:5, cat:"book", catLabel:"📖 The Book",
+    q:"What happens in the infamous ladies' room confrontation between Neely and Helen Lawson?",
+    a:["Neely throws champagne at Helen","Neely rips off Helen's wig and flushes it","Neely slaps Helen across the face","Neely dumps Helen's purse in the toilet"], correct:1,
+    explain:"Neely grabs Helen's hairpiece and sends it straight down the toilet — possibly the greatest act of camp aggression in American fiction.",
+    fact:"The wig flush has been re-enacted at drag bars worldwide for over five decades.",
+    src:"The Novel",
+    yt:"https://www.youtube.com/watch?v=9E6cJPMv75Y", ytLabel:"Watch the film version of the scene" },
+
+  { id:6, cat:"book", catLabel:"📖 The Book",
+    q:"What tragic decision does Jennifer North make after her cancer diagnosis?",
+    a:["She runs away to Paris","She has an abortion, then overdoses","She attempts one last comeback","She marries Lyon Burke"], correct:1,
+    explain:"Fearing disfigurement above all else, Jennifer chooses a lethal overdose after an abortion — the novel's most devastating act of self-determination.",
+    src:"The Novel" },
+
+  { id:7, cat:"book", catLabel:"📖 The Book",
+    q:"What is Lyon Burke's profession?",
+    a:["Film producer","Broadway lawyer/agent","Magazine editor","Theatre director"], correct:1,
+    explain:"Lyon Burke is a sophisticated theatrical attorney turned agent, and the great frustrating love of Anne's life.",
+    src:"The Novel" },
+
+  { id:8, cat:"book", catLabel:"📖 The Book",
+    q:"How many weeks did 'Valley of the Dolls' spend on the NYT bestseller list?",
+    a:["28","52","65","80"], correct:2,
+    explain:"65 extraordinary weeks — a record at the time. Total lifetime sales have been estimated at over 30 million copies.",
+    src:"The Novel" },
+
+  { id:9, cat:"quotes", catLabel:"💬 Famous Lines",
+    q:"Complete Anne's famous opening narration: 'You've got to climb to the top of Mount Everest to reach…'",
+    a:["'…the stars above the clouds.'","'…the Valley of the Dolls.'","'…where the air is thin and the truth is clear.'","'…the life you always dreamed of.'"], correct:1,
+    explain:"The film's portentous opening narration is perhaps the most-quoted camp line in cinema. Barbara Parkins delivers it with magnificent earnestness.",
+    fact:"The line was written by screenwriters Helen Deutsch and Dorothy Kingsley — it does not appear in the novel.",
+    src:"The Film",
+    yt:"https://www.youtube.com/watch?v=StzKr6SNGWM", ytLabel:"Watch the opening narration" },
+
+  { id:10, cat:"book", catLabel:"📖 The Book",
+    q:"Neely O'Hara starts her career as what kind of performer?",
+    a:["Lounge singer","Radio actress","Chorus girl / vaudeville act","Film extra"], correct:2,
+    explain:"Neely bursts onto the scene as a raw vaudevillian talent — a brother-sister act — before her enormous gifts propel her to Broadway and Hollywood.",
+    src:"The Novel" },
+
+  { id:11, cat:"book", catLabel:"📖 The Book",
+    q:"Before 'Valley of the Dolls,' what was Susann's first published book?",
+    a:["The Love Machine","Hollywood Nights","Every Night, Josephine!","Once Is Not Enough"], correct:2,
+    explain:"'Every Night, Josephine!' (1963) was a warm memoir about her poodle Josephine — modest success but proof she could sell herself.",
+    fact:"The poodle book gave Susann the TV connections she'd later weaponize for the Valley promo blitz.",
+    src:"The Novel" },
+
+  { id:12, cat:"book", catLabel:"📖 The Book",
+    q:"Which character is largely believed to be modeled on Ethel Merman?",
+    a:["Jennifer North","Neely O'Hara","Helen Lawson","Anne Welles"], correct:2,
+    explain:"Helen Lawson's brassy Broadway dominance and fierce turf-guarding is widely read as a roman à clef Merman.",
+    src:"The Novel" },
+
+  { id:13, cat:"book", catLabel:"📖 The Book",
+    q:"How many publishers rejected 'Valley of the Dolls' before it found a home?",
+    a:["3","12","17","28"], correct:1,
+    explain:"Twelve publishers passed before Bernard Geis Associates took a chance — and watched it become one of the bestselling novels of the century.",
+    src:"The Novel" },
+
+  { id:14, cat:"book", catLabel:"📖 The Book",
+    q:"What is Anne's New England fiancé's name — the one she leaves behind for New York?",
+    a:["Bradford Morrison","William Hendricks","Henry Bellows","Weston Adams"], correct:0,
+    explain:"Bradford Morrison represents everything Anne is running from: stability, good breeding, and a life spectacularly unlived.",
+    src:"The Novel" },
+
+  { id:15, cat:"book", catLabel:"📖 The Book",
+    q:"Susann wrote 'The Love Machine' in 1969. What kind of book is it?",
+    a:["A direct sequel to Valley of the Dolls","A standalone novel set in the TV industry","A memoir about Hollywood parties","A roman à clef about Marilyn Monroe"], correct:1,
+    explain:"'The Love Machine' is a standalone Susann novel set in the brutal world of network television, with new characters but the same addictive pulp energy.",
+    src:"The Novel" },
+
+  { id:16, cat:"quotes", catLabel:"💬 Famous Lines",
+    q:"Helen Lawson snarls this dismissal at Neely in their first major confrontation. Which line is hers?",
+    a:["'You don't have what it takes, sweetheart — you never did.'","'Broadway doesn't go for booze and dope. Now get out.'","'Talent is ten cents a dozen. Class costs extra.'","'I've buried better girls than you, darling.'"], correct:1,
+    explain:"Helen's ice-cold 'Broadway doesn't go for booze and dope' is Susan Hayward at her most imperious — delivered like a verdict with no appeal.",
+    src:"The Film" },
+
+  // ── THE FILM ──────────────────────────────────────────
+  { id:17, cat:"film", catLabel:"🎬 The Film",
+    q:"In what year was the 1967 film adaptation released?",
+    a:["1965","1966","1967","1968"], correct:2,
+    explain:"Released December 1967 by 20th Century Fox, directed by Mark Robson.",
+    sp:"https://open.spotify.com/track/2nJGMVAD0qNe2uy8ztHvAf", spLabel:"The Theme — Dionne Warwick",
+    src:"The Film" },
+
+  { id:18, cat:"film", catLabel:"🎬 The Film",
+    q:"Who played Anne Welles in the 1967 film?",
+    a:["Patty Duke","Sharon Tate","Barbara Parkins","Candice Bergen"], correct:2,
+    explain:"Barbara Parkins, fresh off TV's Peyton Place, played Anne — cool, elegant, and increasingly tragic.",
+    src:"The Film" },
+
+  { id:19, cat:"film", catLabel:"🎬 The Film",
+    q:"Which actress played Neely O'Hara and delivered one of cinema's great unhinged performances?",
+    a:["Liza Minnelli","Tuesday Weld","Ann-Margret","Patty Duke"], correct:3,
+    explain:"Patty Duke went entirely off-leash as Neely — and the result is one of the most gloriously committed performances in camp cinema history.",
+    yt:"https://www.youtube.com/watch?v=HsMefOyICTg", ytLabel:"Patty Duke's breakdown scene",
+    src:"The Film" },
+
+  { id:20, cat:"film", catLabel:"🎬 The Film",
+    q:"Which actress played Jennifer North in the 1967 film?",
+    a:["Anne Francis","Barbara Bain","Sharon Tate","Diane Baker"], correct:2,
+    explain:"Sharon Tate played the beautiful, doomed Jennifer North — revealing genuine screen presence before her murder in 1969.",
+    fact:"The cruel irony of Tate playing a character who dies young is impossible to ignore in retrospect.",
+    src:"The Film" },
+
+  { id:21, cat:"film", catLabel:"🎬 The Film",
+    q:"Who played Broadway diva Helen Lawson in the 1967 film?",
+    a:["Ethel Merman","Angela Lansbury","Bette Davis","Susan Hayward"], correct:3,
+    explain:"Susan Hayward stepped in after Judy Garland was fired, delivering an imperious, take-no-prisoners Helen Lawson.",
+    src:"The Film" },
+
+  { id:22, cat:"film", catLabel:"🎬 The Film",
+    q:"Who composed the film's celebrated musical score?",
+    a:["Burt Bacharach","Henry Mancini","John Williams","Quincy Jones"], correct:2,
+    explain:"John Williams — yes, THAT John Williams — scored the film over a decade before Jaws and Star Wars.",
+    fact:"The film earned an Oscar nomination for Best Original Score on the strength of Williams's work.",
+    src:"The Film" },
+
+  { id:23, cat:"film", catLabel:"🎬 The Film",
+    q:"Who composed the lyrics to the famous 'Valley of the Dolls' theme?",
+    a:["Hal David","Carole King","Dory Previn","Marilyn Bergman"], correct:2,
+    explain:"Dory Previn wrote the lyrics; her then-husband André Previn composed the music — a partnership that would soon implode dramatically.",
+    sp:"https://open.spotify.com/track/2nJGMVAD0qNe2uy8ztHvAf", spLabel:"Listen to the theme",
+    src:"The Film" },
+
+  { id:24, cat:"film", catLabel:"🎬 The Film",
+    q:"Who recorded the iconic vocal version of the film's theme?",
+    a:["Barbra Streisand","Shirley Bassey","Dusty Springfield","Dionne Warwick"], correct:3,
+    explain:"Dionne Warwick's breathy, yearning recording became a Top 10 hit and is now permanently fused with the film.",
+    sp:"https://open.spotify.com/track/2nJGMVAD0qNe2uy8ztHvAf", spLabel:"Dionne Warwick on Spotify",
+    src:"The Film" },
+
+  { id:25, cat:"film", catLabel:"🎬 The Film",
+    q:"Despite terrible reviews, how much did the film gross against its ~$4.7M budget?",
+    a:["$10M","$20M","$30M","$50M"], correct:2,
+    explain:"Around $30 million worldwide — an enormous hit regardless of what the critics thought. The public was hungry for its dolls.",
+    src:"The Film" },
+
+  { id:26, cat:"film", catLabel:"🎬 The Film",
+    q:"In what decade did the film gain its second life as a midnight movie?",
+    a:["1960s","1970s","1980s","1990s"], correct:1,
+    explain:"Like Rocky Horror, Valley of the Dolls became a beloved midnight movie in the 1970s — audiences bringing wigs and pills to participate.",
+    src:"The Film" },
+
+  { id:27, cat:"film", catLabel:"🎬 The Film",
+    q:"Director Mark Robson had previously directed which other famous melodrama?",
+    a:["Peyton Place","Written on the Wind","Imitation of Life","Magnificent Obsession"], correct:0,
+    explain:"Robson directed Peyton Place (1957) — which also starred Barbara Parkins, making her casting in Valley something of a reunion.",
+    src:"The Film" },
+
+  { id:28, cat:"quotes", catLabel:"💬 Famous Lines",
+    q:"Who delivers the anguished line: 'I am the greatest entertainer in the world — and nobody cares!'?",
+    a:["Anne Welles","Jennifer North","Helen Lawson","Neely O'Hara"], correct:3,
+    explain:"Patty Duke unleashes this desperate cry as Neely during her breakdown — equal parts hilarious and genuinely heartbreaking, which is exactly the Valley of the Dolls sweet spot.",
+    src:"The Film",
+    yt:"https://www.youtube.com/watch?v=HsMefOyICTg", ytLabel:"Watch Patty Duke's breakdown" },
+
+  { id:29, cat:"quotes", catLabel:"💬 Famous Lines",
+    q:"In the ladies' room confrontation, what does Neely shout at Helen just before grabbing her wig?",
+    a:["'You're finished, you old bat — finished!'","'I'm gonna be a bigger star than you ever were!'","'Get out of my way, you washed-up old has-been!'","'You think you can stop me? Nobody stops Neely O'Hara!'"], correct:1,
+    explain:"Neely's declaration — 'I'm gonna be a bigger star than you ever were!' — lands right before the wig goes airborne. It is, frankly, iconic.",
+    src:"The Film",
+    yt:"https://www.youtube.com/watch?v=9E6cJPMv75Y", ytLabel:"Watch the scene" },
+
+  { id:30, cat:"film", catLabel:"🎬 The Film",
+    q:"What is the opening line of Anne's narration, beloved by camp aficionados worldwide?",
+    a:[
+      "'New York was everything I imagined it would be.'",
+      "'You've got to climb to the top of Mount Everest to reach the Valley of the Dolls.'",
+      "'The pills were small. The hunger was enormous.'",
+      "'They called it the Valley. I called it home.'"
+    ], correct:1,
+    explain:"The gloriously portentous Mount Everest line is one of the most quoted pieces of camp dialogue in cinema history.",
+    yt:"https://www.youtube.com/watch?v=StzKr6SNGWM", ytLabel:"The iconic opening narration",
+    src:"The Film" },
+
+  { id:31, cat:"quotes", catLabel:"💬 Famous Lines",
+    q:"Anne says this to Lyon when she finally confronts him about their relationship. Which line is hers?",
+    a:["'You used me, Lyon. You always use the ones who love you most.'","'I don't need you anymore, Lyon. I don't need anyone.'","'You know what the difference is between us? I still feel things.'","'Love isn't enough for you. Nothing is ever enough for you.'"], correct:1,
+    explain:"'I don't need you anymore, Lyon. I don't need anyone' is Anne's quietly devastating line — her declaration of independence that doubles as a surrender.",
+    src:"The Film" },
+
+  { id:32, cat:"quotes", catLabel:"💬 Famous Lines",
+    q:"Jennifer North's husband Tony Polar sings which song in the film, turning it into an unexpected emotional gut-punch?",
+    a:["'Come Live With Me'","'It's Impossible'","'I'll Plant My Own Tree'","'Give a Little More'"], correct:0,
+    explain:"Tony Polar's 'Come Live With Me' is one of the film's most genuinely affecting sequences — made more poignant by what we know is coming for Jennifer.",
+    src:"The Film",
+    sp:"https://open.spotify.com/search/come%20live%20with%20me%20valley%20dolls", spLabel:"Search the song on Spotify" },
+
+  // ── CASTING DRAMA ──────────────────────────────────────
+  { id:33, cat:"casting", catLabel:"⭐ Casting Drama",
+    q:"Why was Judy Garland fired from the film?",
+    a:[
+      "She demanded triple her contracted salary",
+      "She was chronically late, erratic, and couldn't complete scenes",
+      "She physically attacked Barbara Parkins",
+      "She refused to wear a wig for the role"
+    ], correct:1,
+    explain:"Garland's extreme instability — hours late, incapable of completing scenes, requiring extraordinary handling — made the production impossible.",
+    fact:"Rumors persist that on her best days, Garland was electrifyingly brilliant. Those days were not enough.",
+    src:"Casting",
+    yt:"https://www.youtube.com/watch?v=IUEJmE3m5wg", ytLabel:"Judy Garland discusses Valley of the Dolls" },
+
+  { id:34, cat:"casting", catLabel:"⭐ Casting Drama",
+    q:"After being fired, Judy Garland got her revenge how?",
+    a:[
+      "She sued 20th Century Fox for millions",
+      "She recorded a withering parody response song",
+      "She gave a scorched-earth Life magazine interview",
+      "She appeared on the Tonight Show and mocked the film"
+    ], correct:1,
+    explain:"Garland recorded a brilliantly arch song called 'I'd Like to Hate Myself in the Morning' — a direct, hilarious riposte to her firing.",
+    sp:"https://open.spotify.com/search/Judy%20Garland%20Valley%20of%20the%20Dolls", spLabel:"Search: Judy Garland & Valley of the Dolls",
+    src:"Casting" },
+
+  { id:35, cat:"casting", catLabel:"⭐ Casting Drama",
+    q:"Jacqueline Susann famously wanted which actress to play Neely O'Hara?",
+    a:["Tuesday Weld","Raquel Welch","Liza Minnelli","Ann-Margret"], correct:2,
+    explain:"Susann desperately wanted Liza Minnelli — the irony of Judy Garland's daughter not playing a pill-addicted performer with a legendary mother is almost cosmically unfair.",
+    src:"Casting" },
+
+  { id:36, cat:"casting", catLabel:"⭐ Casting Drama",
+    q:"Who championed Sharon Tate's casting as Jennifer North?",
+    a:["Producer David Weisbart","Director Mark Robson","Her then-partner Roman Polanski","Jacqueline Susann herself"], correct:2,
+    explain:"Polanski, fresh from directing Tate in 'The Fearless Vampire Killers,' pushed hard for her casting and believed in her star power.",
+    src:"Casting" },
+
+  { id:37, cat:"casting", catLabel:"⭐ Casting Drama",
+    q:"Patty Duke's erratic behavior on set is now understood to have stemmed from what?",
+    a:["A secret drug addiction","Undiagnosed bipolar disorder","Conflict with Jacqueline Susann","A contractual dispute with Fox"], correct:1,
+    explain:"Duke suffered from undiagnosed bipolar disorder through her young career — a condition she later wrote about with brave openness.",
+    fact:"Duke became a major mental health advocate, directly connecting her Valley experience to her personal journey.",
+    src:"Casting" },
+
+  { id:38, cat:"casting", catLabel:"⭐ Casting Drama",
+    q:"Which Oscar-winning actress turned down the role of Anne Welles before Barbara Parkins was cast?",
+    a:["Natalie Wood","Jane Fonda","Faye Dunaway","Julie Christie"], correct:0,
+    explain:"Natalie Wood was reportedly offered the lead and declined, leaving the door open for Parkins.",
+    src:"Casting" },
+
+  { id:39, cat:"casting", catLabel:"⭐ Casting Drama",
+    q:"Which pop superstar appeared in the 1994 TV remake of Valley of the Dolls?",
+    a:["Mariah Carey","Janet Jackson","Whitney Houston","Paula Abdul"], correct:2,
+    explain:"Whitney Houston starred in and executive-produced the 1994 TV movie remake — a choice that resonates with knowing tragedy.",
+    yt:"https://www.youtube.com/watch?v=qlO-5TqLMjg", ytLabel:"Whitney Houston in Valley of the Dolls (1994)",
+    src:"Casting" },
+
+  { id:40, cat:"casting", catLabel:"⭐ Casting Drama",
+    q:"Who played the older diva role in the 1994 Whitney Houston TV remake?",
+    a:["Patti LaBelle","Cicely Tyson","Vanessa Williams","Diahann Carroll"], correct:3,
+    explain:"Diahann Carroll brought legendary glamour and icy authority to the 1994 remake — exactly the energy the role demands.",
+    src:"Casting" },
+
+  { id:41, cat:"casting", catLabel:"⭐ Casting Drama",
+    q:"Jacqueline Susann appears as a cameo in the 1967 film. Where?",
+    a:[
+      "As a reporter outside a theater asking Neely questions",
+      "As a club owner at a Hollywood party",
+      "As a nurse in the sanitarium",
+      "As a fan waiting at a stage door"
+    ], correct:0,
+    explain:"Susann appears as a reporter — a brief, gleeful insertion of the author into her own world.",
+    fact:"Susann reportedly loved being on set and was very difficult to remove.",
+    src:"Casting" },
+
+  { id:42, cat:"casting", catLabel:"⭐ Casting Drama",
+    q:"Before Barbara Parkins, which actress was seriously considered for Neely O'Hara?",
+    a:["Natalie Wood","Tuesday Weld","Candice Bergen","Raquel Welch"], correct:1,
+    explain:"Tuesday Weld was a strong contender for Neely before Patty Duke landed the role.",
+    src:"Casting" },
+
+  { id:43, cat:"casting", catLabel:"⭐ Casting Drama",
+    q:"Tony Scotti played Tony Polar in the film. What career did he become famous for afterward?",
+    a:["Politics","Fashion design","Music industry executive","TV game show hosting"], correct:2,
+    explain:"Tony Scotti became a major music industry figure, co-founding Scotti Brothers Records.",
+    src:"Casting" },
+
+  { id:44, cat:"casting", catLabel:"⭐ Casting Drama",
+    q:"True or false: 'Valley of the Dolls' was adapted into a Broadway musical before the 1967 film.",
+    a:["True — ran 200+ performances","True — closed after opening night","False — no Broadway musical exists","True — Ethel Merman starred"], correct:2,
+    explain:"No Broadway musical adaptation was ever made, though the idea has been tantalisingly discussed for decades.",
+    src:"Casting" },
+
+  // ── BEHIND THE SCENES ──────────────────────────────────
+  { id:45, cat:"behind", catLabel:"🎭 Behind the Scenes",
+    q:"Which literary rival had a famous public feud with Jacqueline Susann?",
+    a:["Gore Vidal","Norman Mailer","Truman Capote","Harold Robbins"], correct:2,
+    explain:"Truman Capote called Susann 'a truck driver in drag.' She reportedly replied she found his work 'very literary — which is why no one reads it.'",
+    src:"Behind the Scenes" },
+
+  { id:46, cat:"behind", catLabel:"🎭 Behind the Scenes",
+    q:"Susann was writing 'Valley of the Dolls' while secretly battling what illness?",
+    a:["Liver disease","Lupus","Breast cancer","Parkinson's disease"], correct:2,
+    explain:"Susann was diagnosed with breast cancer in 1962 and kept it from the public for over a decade, dying of the disease in 1974.",
+    fact:"Her husband Irving Mansfield only revealed the secret illness after her death.",
+    src:"Behind the Scenes" },
+
+  { id:47, cat:"behind", catLabel:"🎭 Behind the Scenes",
+    q:"How did Susann pioneer modern book marketing for 'Valley of the Dolls'?",
+    a:[
+      "She hired topless models to hand out copies in Times Square",
+      "She leveraged her TV connections for a relentless personal publicity tour",
+      "She placed ads in scandal magazines",
+      "She mailed 500 advance copies to Hollywood stars"
+    ], correct:1,
+    explain:"Susann weaponized her TV relationships to appear on every possible program — essentially inventing the modern celebrity author book tour.",
+    src:"Behind the Scenes" },
+
+  { id:48, cat:"behind", catLabel:"🎭 Behind the Scenes",
+    q:"What required a specially rigged prop toilet during the wig-flushing scene?",
+    a:[
+      "The wig was too expensive to flush without rigging",
+      "The production used multiple wigs per take and real toilets would clog",
+      "Both — special toilet plus multiple takes with fresh wigs each time",
+      "Neither — it was all done with camera tricks"
+    ], correct:2,
+    explain:"The prop department built a special toilet AND used a new wig for each take — multiple flushes, multiple hairpieces sacrificed for art.",
+    src:"Behind the Scenes" },
+
+  { id:49, cat:"behind", catLabel:"🎭 Behind the Scenes",
+    q:"Dory Previn experienced what personal trauma while her Valley of the Dolls theme was being produced?",
+    a:[
+      "She was going through her own pill dependency",
+      "Her husband André left her for Mia Farrow",
+      "She lost a child during the production",
+      "She was fired and replaced as lyricist"
+    ], correct:1,
+    explain:"André Previn left Dory for Mia Farrow during this period — a devastation that fueled some of Dory's most extraordinary and raw subsequent songwriting.",
+    sp:"https://open.spotify.com/search/Dory%20Previn", spLabel:"Explore Dory Previn on Spotify",
+    src:"Behind the Scenes" },
+
+  { id:50, cat:"behind", catLabel:"🎭 Behind the Scenes",
+    q:"Irving Mansfield, Susann's husband, served in what capacity for her career?",
+    a:["Literary agent only","Publicist only","Producer only","All of the above — he was her full operation"], correct:3,
+    explain:"Mansfield was Susann's agent, promoter, manager, and most ferocious champion — their partnership was central to everything she achieved.",
+    src:"Behind the Scenes" },
+
+  { id:51, cat:"behind", catLabel:"🎭 Behind the Scenes",
+    q:"As the film was being made dramatizing pill addiction, what real-life parallel was playing out?",
+    a:[
+      "Sharon Tate was secretly in rehab",
+      "Judy Garland — just fired from the production — was living out her own version of the story",
+      "Patty Duke had just checked into a sanitarium",
+      "20th Century Fox executives were themselves under investigation for drug use"
+    ], correct:1,
+    explain:"The story's horrifying real-life mirror: Garland, fired from the production about pill addiction, was herself spiraling through her own Valley.",
+    src:"Behind the Scenes" },
+
+  { id:52, cat:"behind", catLabel:"🎭 Behind the Scenes",
+    q:"The 1967 film was nominated for which Academy Award?",
+    a:["Best Picture","Best Actress (Patty Duke)","Best Original Score","Best Costume Design"], correct:2,
+    explain:"Despite being critically savaged, the film earned an Oscar nomination for Best Original Score — John Williams's lush work recognized by the Academy.",
+    src:"Behind the Scenes" },
+
+  { id:53, cat:"behind", catLabel:"🎭 Behind the Scenes",
+    q:"Susan Hayward reportedly had a difficult time during production. Why?",
+    a:[
+      "Creative conflicts with Patty Duke",
+      "She felt the script was beneath her",
+      "She was dealing with serious personal health problems",
+      "She wanted to be paid more than Fox would allow"
+    ], correct:2,
+    explain:"Hayward was managing her own serious health issues during production, which contributed to tension on set.",
+    src:"Behind the Scenes" },
+
+  { id:54, cat:"behind", catLabel:"🎭 Behind the Scenes",
+    q:"Jacqueline Susann's novel was dedicated to whom?",
+    a:[
+      "Her husband Irving Mansfield",
+      "Everyone who has ever taken a pill to face the day",
+      "Her poodle Josephine",
+      "The women of Hollywood"
+    ], correct:1,
+    explain:"The dedication reads 'To everyone who has ever taken a doll to face the day' — immediately signaling both the book's subject and its empathy.",
+    src:"Behind the Scenes" },
+
+  { id:55, cat:"behind", catLabel:"🎭 Behind the Scenes",
+    q:"Before becoming a novelist, Jacqueline Susann had a career in what field?",
+    a:["Journalism","Screenwriting","Radio announcing","Modeling and acting"], correct:3,
+    explain:"Susann was an actress and TV personality for years — giving her deep insider knowledge of the entertainment world she'd skewer in her fiction.",
+    src:"Behind the Scenes" },
+
+  { id:56, cat:"behind", catLabel:"🎭 Behind the Scenes",
+    q:"Which detail about the NYT bestseller-list run of 'Valley of the Dolls' is accurate?",
+    a:["28 weeks at #1","52 weeks total on the list","65 consecutive weeks on the list","80 total weeks including re-entries"], correct:2,
+    explain:"65 consecutive weeks — a record at the time and a commercial phenomenon that validated Susann's strategy completely.",
+    src:"Behind the Scenes" },
+
+  // ── LEGACY & CAMP ──────────────────────────────────────
+  { id:57, cat:"legacy", catLabel:"👑 Legacy & Camp",
+    q:"Russ Meyer's 1970 'Beyond the Valley of the Dolls' was written by which famous film critic?",
+    a:["Pauline Kael","Andrew Sarris","Gene Siskel","Roger Ebert"], correct:3,
+    explain:"Roger Ebert co-wrote the screenplay for the wildly campy Beyond the Valley of the Dolls — one of cinema's great unexpected creative partnerships.",
+    yt:"https://www.youtube.com/watch?v=qZiX1EeyBjk", ytLabel:"Beyond the Valley of the Dolls trailer",
+    src:"Legacy & Camp" },
+
+  { id:58, cat:"legacy", catLabel:"👑 Legacy & Camp",
+    q:"Valley of the Dolls has been a foundational text for which LGBTQ+ cultural tradition?",
+    a:["Gay beach culture","The Stonewall movement","Drag performance and camp aesthetics","Gay literary fiction"], correct:2,
+    explain:"The film's outsized emotions, tragic heroines, and glamorous excess have made it a cornerstone of drag culture and camp aesthetics for decades.",
+    fact:"Countless drag performers have based entire acts on Neely O'Hara and Helen Lawson.",
+    src:"Legacy & Camp" },
+
+  { id:59, cat:"legacy", catLabel:"👑 Legacy & Camp",
+    q:"Approximately how many copies of 'Valley of the Dolls' have been sold worldwide?",
+    a:["5 million","15 million","30 million","50 million"], correct:2,
+    explain:"Over 30 million copies — making it one of the bestselling English-language novels ever published.",
+    src:"Legacy & Camp" },
+
+  { id:60, cat:"legacy", catLabel:"👑 Legacy & Camp",
+    q:"Which director has repeatedly cited 'Valley of the Dolls' as a profound influence on his campy aesthetic?",
+    a:["Steven Spielberg","Tim Burton","Wes Anderson","John Waters"], correct:3,
+    explain:"John Waters has cited Valley of the Dolls as a formative influence — its trashy glamour and committed excess are pure Waters DNA.",
+    src:"Legacy & Camp" },
+
+  { id:61, cat:"legacy", catLabel:"👑 Legacy & Camp",
+    q:"Courtney Love has cited Valley of the Dolls as a major personal influence because she identified with whom?",
+    a:["Jennifer North's beauty and tragedy","Anne Welles's ambition","Helen Lawson's iron dominance","Neely O'Hara's self-destructive genius"], correct:3,
+    explain:"Love has spoken movingly about identifying with Neely — the brilliantly talented artist who destroys the things she loves most.",
+    src:"Legacy & Camp" },
+
+  { id:62, cat:"quotes", catLabel:"💬 Famous Lines",
+    q:"Which character says: 'Boobies, boobies, boobies — nothin' but boobies! Who needs 'em!'?",
+    a:["Anne Welles","Helen Lawson","Neely O'Hara","Jennifer North"], correct:2,
+    explain:"Neely delivers this magnificent non-sequitur during one of her breakdowns — it's the line that separates people who've truly seen this film from those who merely know of it.",
+    fact:"Patty Duke's delivery makes this pure absurdist poetry. It has been quoted at drag shows on six continents.",
+    src:"The Film" },
+
+  { id:63, cat:"quotes", catLabel:"💬 Famous Lines",
+    q:"Helen Lawson delivers this line to explain why she keeps Neely out of her show. Which is it?",
+    a:["'I don't share a stage with amateurs.'","'I don't like her. She's too young and too talented and she makes me feel old.'","'One star per show. That's always been my rule.'","'She has the kind of hunger that eats everything around it.'"], correct:1,
+    explain:"Helen's admission that Neely is 'too young and too talented' is a rare moment of brutal self-awareness from a woman who has turned ruthlessness into an art form.",
+    src:"The Film" },
+
+  { id:64, cat:"quotes", catLabel:"💬 Famous Lines",
+    q:"Neely screams this line while being dragged back into the sanitarium. What does she cry?",
+    a:["'You can't do this to me! I'm Neely O'Hara!'","'Let me go! I'll destroy every one of you!'","'I'll be back! I always come back!'","'You'll be sorry! The whole world will be sorry!'"], correct:0,
+    explain:"'You can't do this to me! I'm Neely O'Hara!' is the line — delivered by Patty Duke with absolute conviction. It is the single greatest sentence in American cinema.",
+    fact:"This line has entered the cultural lexicon as shorthand for any diva refusing to accept consequences.",
+    src:"The Film",
+    yt:"https://www.youtube.com/watch?v=HsMefOyICTg", ytLabel:"Watch the scene" },
+
+  { id:65, cat:"legacy", catLabel:"👑 Legacy & Camp",
+    q:"Jacqueline Susann died in 1974. How old was she?",
+    a:["49","52","56","61"], correct:2,
+    explain:"Susann died of breast cancer on September 21, 1974, aged 56 — the illness she'd been secretly battling since before she wrote the novel.",
+    src:"Legacy & Camp" },
+
+  { id:66, cat:"quotes", catLabel:"💬 Famous Lines",
+    q:"What does Jennifer say to Anne when explaining why she poses for French nudie films?",
+    a:["'A girl does what she has to do to survive, Anne. You'll understand someday.'","'It's not what you think — it's art.'","'Ted needs the money. What Ted needs, I get him. That's all.'","'Don't look at me like that. You do what you have to do.'"], correct:2,
+    explain:"Jennifer's pragmatic 'Ted needs the money' is one of the saddest lines in the film — a woman who has reduced herself entirely to what the men around her require.",
+    src:"The Film" },
+
+  { id:67, cat:"quotes", catLabel:"💬 Famous Lines",
+    q:"How does Helen Lawson respond when told that Neely O'Hara is 'the hottest thing on Broadway right now'?",
+    a:["'She won't be for long.'","'Talent without discipline is just noise.'","'I've heard that about a hundred girls before her.'","'Then she'd better enjoy it. It never lasts.'"], correct:0,
+    explain:"Helen's icy 'She won't be for long' is everything — a four-word declaration of war disguised as a throwaway.",
+    src:"The Film" },
+
+  { id:68, cat:"quotes", catLabel:"💬 Famous Lines",
+    q:"Complete Neely's line when her manager tries to convince her the pills are a problem: 'I need them — they're the only thing that keeps me…'",
+    a:["'…sane in this insane business.'","'…from feeling everything too much.'","'…going. Without them, I'm nothing.'","'…from becoming my mother.'"], correct:1,
+    explain:"'They're the only thing that keeps me from feeling everything too much' is the Valley of the Dolls thesis in a single sentence — talent as wound, pills as bandage.",
+    src:"The Film" },
+
+  { id:69, cat:"quotes", catLabel:"💬 Famous Lines",
+    q:"Anne's final voiceover closes the film. Which line ends Valley of the Dolls?",
+    a:[
+      "'And so I went back to the beginning — back to the Valley.'",
+      "'I'd made it to the top. But the top of what, exactly?'",
+      "'The dolls. Without them, I couldn't face the days. And that, I suppose, was the beginning of the end.'",
+      "'And I thought: this is it. This is all there is. And it's enough. It has to be enough.'"
+    ], correct:0,
+    explain:"Anne's final line — 'back to the Valley' — closes the circle with devastating economy. She went from wanting everything to accepting a beautiful nothing.",
+    src:"The Film" },
+
+  { id:70, cat:"quotes", catLabel:"💬 Famous Lines",
+    q:"In the sanitarium scene, what does the nurse say when Neely demands more pills?",
+    a:["'Miss O'Hara, the doctor says absolutely not.'","'Neely, you've had enough!'","'Those aren't prescribed for you, Miss O'Hara.'","'One more and it's the doctor's problem, not mine.'"], correct:1,
+    explain:"'Neely, you've had enough!' is one of the film's most-quoted lines — three words that contain the entire tragedy of Neely O'Hara.",
+    fact:"The line is often shouted at drag shows and midnight screenings whenever a pill appears on screen.",
+    src:"The Film" },
+
+  // ── FINAL 10 MIX ──────────────────────────────────────
+  { id:71, cat:"quotes", catLabel:"💬 Famous Lines",
+    q:"Who says: 'Lyon, I loved you so much. And you just threw it away. Like it was nothing. Like I was nothing.'?",
+    a:["Jennifer North","Helen Lawson","Neely O'Hara","Anne Welles"], correct:3,
+    explain:"Anne's quiet devastation — delivered by Barbara Parkins with restrained precision — is the emotional counter-weight to all of Neely's pyrotechnics.",
+    src:"The Film" },
+
+  { id:72, cat:"film", catLabel:"🎬 The Film",
+    q:"The film's costume designer was which celebrated Hollywood name?",
+    a:["Edith Head","Irene Sharaff","Bill Travilla","Donfeld"], correct:3,
+    explain:"Donfeld created the costumes, producing some of the most gloriously over-the-top late-1960s fashion ever put on film.",
+    src:"The Film" },
+
+  { id:73, cat:"casting", catLabel:"⭐ Casting Drama",
+    q:"The casting of Patty Duke as Neely was opposed by Susann. The actress she wanted instead?",
+    a:["Tuesday Weld","Ann-Margret","Liza Minnelli","Natalie Wood"], correct:2,
+    explain:"Susann wanted Liza Minnelli with an intensity that bordered on obsession. The cosmic irony of Minnelli not playing this role is staggering.",
+    src:"Casting" },
+
+  { id:74, cat:"behind", catLabel:"🎭 Behind the Scenes",
+    q:"How did Susann respond when the New York Times panned the novel?",
+    a:[
+      "She wrote a furious letter to the editor",
+      "She sent the review back with a single note: 'I cried all the way to the bank'",
+      "She refused to do any more press",
+      "She issued a long public defense of the book"
+    ], correct:1,
+    explain:"One of the great literary mic-drops: Susann reportedly sent the negative review back annotated simply 'I cried all the way to the bank.'",
+    src:"Behind the Scenes" },
+
+  { id:75, cat:"legacy", catLabel:"👑 Legacy & Camp",
+    q:"Valley of the Dolls has been cited by Guinness World Records for what?",
+    a:["Most banned novel","Fastest to one million sales","One of the world's bestselling fiction novels","Most film adaptations of a single novel"], correct:2,
+    explain:"Guinness cites Valley of the Dolls among the world's bestselling fiction novels, based on its extraordinary cumulative sales figures.",
+    src:"Legacy & Camp" },
+
+  { id:76, cat:"quotes", catLabel:"💬 Famous Lines",
+    q:"Jennifer says this to Anne when Anne asks why she stays with Ted despite how he treats her. Which line?",
+    a:["'Because I love him. Isn't that enough?'","'Because without him, I'd have to admit I wasted the best years of my life.'","'Because he needs me, Anne. And that's all I've ever wanted — to be needed.'","'Because when he looks at me, for just one second, I feel like I'm worth something.'"], correct:2,
+    explain:"'He needs me, Anne. And that's all I've ever wanted — to be needed.' is Jennifer in a nutshell: a woman who has confused being needed with being loved.",
+    src:"The Film" },
+
+  { id:77, cat:"behind", catLabel:"🎭 Behind the Scenes",
+    q:"What technique did Susann use on her book tours that was revolutionary at the time?",
+    a:[
+      "She gave away free pill bottles as promotional items",
+      "She appeared at supermarkets and drugstores, not just bookshops",
+      "She hosted cocktail parties at every stop",
+      "She brought her poodle Josephine to every appearance"
+    ], correct:1,
+    explain:"Susann understood that her readers bought their paperbacks at supermarkets and drugstores — not bookshops — so she went where they were. Visionary.",
+    src:"Behind the Scenes" },
+
+  { id:78, cat:"casting", catLabel:"⭐ Casting Drama",
+    q:"Barbara Parkins later reflected on filming Valley of the Dolls as what?",
+    a:[
+      "The greatest humiliation of her career",
+      "Completely forgettable and beneath her talents",
+      "Chaotic and difficult but ultimately a film she came to embrace",
+      "The best experience of her professional life"
+    ], correct:2,
+    explain:"Parkins came to embrace the film's cult status — reflecting on it as chaotic but formative, and proud of its place in pop culture history.",
+    src:"Casting" },
+
+  { id:79, cat:"quotes", catLabel:"💬 Famous Lines",
+    q:"What does Helen Lawson say when someone suggests she might want to 'slow down' and 'enjoy her success'?",
+    a:["'Slow down? Honey, slow down is how you die in this business.'","'The day I slow down is the day they put me in the ground.'","'I didn't get where I am by slowing down, darling.'","'Success is a moving target. The minute you stop, you're finished.'"], correct:2,
+    explain:"'I didn't get where I am by slowing down, darling' — Helen Lawson in eight words. It's both philosophy and threat.",
+    src:"The Film" },
+
+  { id:80, cat:"quotes", catLabel:"💬 Famous Lines",
+    q:"Neely delivers this line to her reflection in the mirror after a particularly brutal night. Which is it?",
+    a:["'Who are you? I don't even know you anymore.'","'Look at you. What happened to you? Where did Neely O'Hara go?'","'You had everything. Everything. And you threw it all away for these.'","'I hate you. I hate what you've become. I hate all of it.'"], correct:2,
+    explain:"'You had everything. And you threw it all away for these' — spoken to her reflection, holding the pill bottle — is the Valley of the Dolls in a single image.",
+    src:"The Film" }
+];
+
+// ═══════════════════════════════════════════
+// GAME STATE
+// ═══════════════════════════════════════════
+let gameQ=[], cur=0, score=0, streak=0, correct=0, wrong=0, lives=5, answered=false;
+
+// ═══════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════
+window.addEventListener('load', () => {
+  buildCapsules();
+});
+
+function buildCapsules() {
+  const stage = document.getElementById('capStage');
+  const halves = [
+    ['#D93B3B','#A02020'],['#9B4FC8','#6B2A9A'],['#E8C034','#B08A00'],
+    ['#E05A8A','#A02060'],['#E0713A','#A04010'],['#3AA8A0','#1A6860'],
+    ['#F4A7C0','#C06080'],['#6EC6FF','#2060A0']
+  ];
+  for (let i=0; i<22; i++) {
+    const cap = document.createElement('div');
+    cap.className = 'cap';
+    const w = 35 + Math.random()*55;
+    const h = w*0.38;
+    const pair = halves[Math.floor(Math.random()*halves.length)];
+    const r0 = Math.random()*360;
+    const r1 = r0 + 120 + Math.random()*120;
+    cap.style.cssText = `
+      left:${Math.random()*105-5}%;
+      width:${w}px; height:${h}px;
+      background: linear-gradient(90deg, ${pair[0]} 50%, ${pair[1]} 50%);
+      --r0:${r0}deg; --r1:${r1}deg;
+      animation-duration:${18+Math.random()*22}s;
+      animation-delay:-${Math.random()*40}s;
+      border:2px solid rgba(0,0,0,0.18);
+      box-shadow: 2px 3px 0 rgba(0,0,0,0.12);
+    `;
+    stage.appendChild(cap);
+  }
+}
+
+// ═══════════════════════════════════════════
+// FLOW
+// ═══════════════════════════════════════════
+function showStart() {
+  document.getElementById('startScreen').classList.remove('hidden');
+  ['loadingScreen','quizScreen','resultsScreen'].forEach(id=>document.getElementById(id).classList.add('hidden'));
+}
+
+function startGame() {
+  ['startScreen','loadingScreen','quizScreen','resultsScreen'].forEach(id=>document.getElementById(id).classList.add('hidden'));
+  document.getElementById('loadingScreen').classList.remove('hidden');
+
+  gameQ = [...QUESTIONS].sort(()=>Math.random()-0.5).slice(0,20);
+  cur=0; score=0; streak=0; correct=0; wrong=0; lives=5; answered=false;
+
+  setTimeout(()=>{
+    document.getElementById('loadingScreen').classList.add('hidden');
+    document.getElementById('quizScreen').classList.remove('hidden');
+    renderQ();
+  }, 1400);
+}
+
+function renderQ() {
+  answered = false;
+  const q = gameQ[cur];
+
+  document.getElementById('qNum').textContent = cur+1;
+  document.getElementById('scoreNum').textContent = score;
+  document.getElementById('progressFill').style.width = (cur/20*100)+'%';
+
+  // Lives
+  const lr = document.getElementById('livesRow');
+  lr.innerHTML = '';
+  for(let i=0;i<5;i++){
+    const c=document.createElement('div');
+    c.className='life-cap red'+(i>=lives?' used':'');
+    lr.appendChild(c);
+  }
+
+  // Category tag
+  const tag = document.getElementById('qCatTag');
+  tag.textContent = q.catLabel;
+  tag.className = 'q-cat-tag '+getCatClass(q.cat);
+
+  document.getElementById('qText').textContent = q.q;
+  document.getElementById('qSource').textContent = q.src ? 'Source: '+q.src : '';
+
+  // Media on question
+  const qm = document.getElementById('qMediaLinks');
+  qm.innerHTML='';
+  if(q.yt){ const a=mkMedia(q.yt,'yt','▶ '+q.ytLabel); qm.appendChild(a); }
+  if(q.sp){ const a=mkMedia(q.sp,'sp','♫ '+q.spLabel); qm.appendChild(a); }
+
+  // Answer buttons
+  const grid = document.getElementById('answersGrid');
+  grid.innerHTML='';
+  ['A','B','C','D'].forEach((L,i)=>{
+    const btn=document.createElement('button');
+    btn.className='ans-btn';
+    btn.innerHTML=`<span class="ans-letter">${L}</span><span>${q.a[i]}</span>`;
+    btn.onclick=()=>pick(i);
+    grid.appendChild(btn);
+  });
+
+  // Hide feedback
+  const fp=document.getElementById('feedbackPanel');
+  fp.classList.remove('show');
+  document.getElementById('nextBtn').textContent = cur<19 ? 'Next Question →' : 'See My Results ✦';
+
+  // Animate card in
+  const card=document.getElementById('qCard');
+  card.style.animation='none';
+  card.offsetHeight;
+  card.style.animation='popIn 0.35s cubic-bezier(0.34,1.56,0.64,1)';
+}
+
+function getCatClass(cat){
+  return {book:'cat-book',film:'cat-film',casting:'cat-casting',behind:'cat-behind',legacy:'cat-legacy',quotes:'cat-quotes'}[cat]||'cat-book';
+}
+
+function mkMedia(href,cls,label){
+  const a=document.createElement('a');
+  a.href=href; a.target='_blank';
+  a.className='media-btn '+cls;
+  a.textContent=label;
+  return a;
+}
+
+function pick(idx){
+  if(answered) return;
+  answered=true;
+  const q=gameQ[cur];
+  const isRight=idx===q.correct;
+  const btns=document.querySelectorAll('.ans-btn');
+
+  btns.forEach((b,i)=>{
+    b.disabled=true;
+    if(i===q.correct) b.classList.add(isRight?'correct':'reveal-correct');
+    if(i===idx&&!isRight) b.classList.add('wrong');
+  });
+
+  if(isRight){ score+=100; streak++; correct++; document.getElementById('scoreNum').textContent=score; if(streak>=3) showStreak(); }
+  else { streak=0; lives=Math.max(0,lives-1); wrong++; hideStreak(); document.querySelectorAll('.life-cap')[5-lives]?.classList.add('used'); }
+
+  showFeedback(isRight,q);
+}
+
+function showFeedback(ok,q){
+  const panel=document.getElementById('feedbackPanel');
+  const res=document.getElementById('feedbackResult');
+  const ex=document.getElementById('feedbackExplain');
+  const ff=document.getElementById('funFact');
+  const fm=document.getElementById('feedbackMedia');
+
+  const yesLines=["Absolutely fabulous! ✦","Darling, you KNOW your dolls! 💊","Brilliant! You're a star! ⭐","Divine! Simply divine! ✨","Yes, yes, YES! 🎬","Magnificent, darling! 💋"];
+  const noLines=["Oh honey, no… 💔","Neely would be disappointed. 😬","Take a doll and try again. 💊","Not quite, darling. 🪞","The Valley claims another! 🌿"];
+
+  res.className='feedback-result '+(ok?'correct':'wrong');
+  res.textContent=ok ? yesLines[Math.floor(Math.random()*yesLines.length)] : noLines[Math.floor(Math.random()*noLines.length)];
+  ex.textContent=q.explain||'';
+
+  if(q.fact){ ff.textContent='✦ Did you know: '+q.fact; ff.classList.add('show'); }
+  else { ff.classList.remove('show'); }
+
+  fm.innerHTML='';
+  if(q.yt&&ok){ fm.appendChild(mkMedia(q.yt,'yt','▶ '+q.ytLabel)); }
+  if(q.sp){ fm.appendChild(mkMedia(q.sp,'sp','♫ '+q.spLabel)); }
+
+  panel.classList.add('show');
+}
+
+function nextQuestion(){
+  cur++;
+  if(cur>=20) showResults();
+  else renderQ();
+}
+
+function showStreak(){
+  const b=document.getElementById('streakBadge');
+  document.getElementById('streakNum').textContent=streak;
+  b.classList.add('show');
+}
+
+function hideStreak(){
+  document.getElementById('streakBadge').classList.remove('show');
+}
+
+function showResults(){
+  document.getElementById('quizScreen').classList.add('hidden');
+  document.getElementById('resultsScreen').classList.remove('hidden');
+  hideStreak();
+
+  const pct=Math.round((correct/20)*100);
+
+  const taglines=[
+    [90,"You ARE Jacqueline Susann, Darling."],
+    [75,"A True Doll of the First Order"],
+    [60,"You Know the Valley. The Valley Knows You Better."],
+    [40,"The Valley Claims Another"],
+    [0,"Into the Valley You Go, Darling"]
+  ];
+  const msgs=[
+    [90,"Staggering. Helen Lawson would HATE you — and that is the highest possible compliment."],
+    [75,"Impressive! You've clearly spent time in the Valley and emerged with your wig intact."],
+    [60,"A respectable showing. You know your dolls from your Dolls, but there are secrets yet revealed."],
+    [40,"Oh honey. You stumbled in without a map. Perhaps another round is in order?"],
+    [0,"The Valley has humbled you completely. Re-watch the film, re-read the book, and report back."]
+  ];
+
+  let tagline=taglines[taglines.length-1][1], msg=msgs[msgs.length-1][1];
+  for(const [t,l] of taglines){ if(pct>=t){ tagline=l; break; } }
+  for(const [t,l] of msgs){ if(pct>=t){ msg=l; break; } }
+
+  document.getElementById('resultTagline').textContent=tagline;
+  document.getElementById('scoreBig').textContent=pct+'%';
+  document.getElementById('scoreFraction').textContent=`${correct} out of 20 correct`;
+  document.getElementById('resultMsg').textContent=msg;
+  document.getElementById('resultBreakdown').innerHTML=`
+    <div class="bd-item"><div class="bd-num g">${correct}</div><div class="bd-label">Correct</div></div>
+    <div class="bd-item"><div class="bd-num r">${wrong}</div><div class="bd-label">Wrong</div></div>
+    <div class="bd-item"><div class="bd-num y">${score}</div><div class="bd-label">Points</div></div>
+  `;
+
+  // Build share card (slight delay so fonts are ready)
+  setTimeout(() => buildShareCard(pct, correct, tagline, msg), 120);
+
+  if(pct>=65) confetti();
+}
+
+function confetti(){
+  const colors=['#D93B3B','#9B4FC8','#E8C034','#E05A8A','#3AA8A0','#E0713A','#F4A7C0'];
+  for(let i=0;i<55;i++){
+    setTimeout(()=>{
+      const p=document.createElement('div');
+      p.className='conf-pill';
+      const c=colors[Math.floor(Math.random()*colors.length)];
+      const w=8+Math.random()*18; const h=w*(Math.random()>0.5?0.4:1);
+      p.style.cssText=`left:${Math.random()*100}vw;width:${w}px;height:${h}px;background:${c};border:1.5px solid rgba(0,0,0,0.2);--r0:${Math.random()*360}deg;--r1:${Math.random()*720+360}deg;--dur:${1.8+Math.random()*1.5}s;`;
+      document.body.appendChild(p);
+      setTimeout(()=>p.remove(),(3)*1000);
+    },i*45);
+  }
+}
+
+// ═══════════════════════════════════════════
+// SHARE CARD — drawn on Canvas
+// ═══════════════════════════════════════════
+
+// Store results globally so share functions can access them
+let _shareData = {};
+
+function buildShareCard(pct, correct, tagline, msg) {
+  _shareData = { pct, correct, tagline, msg };
+
+  const canvas = document.getElementById('shareCanvas');
+  // Square-ish card: 960 × 960 (renders crisp on retina)
+  const W = 960, H = 960;
+  canvas.width = W;
+  canvas.height = H;
+  canvas.style.maxWidth = '100%';
+
+  const ctx = canvas.getContext('2d');
+
+  // ── Background: hot bubblegum pink ──────────────────────
+  ctx.fillStyle = '#F7C5D5';
+  roundRect(ctx, 0, 0, W, H, 28);
+  ctx.fill();
+
+  // ── Scattered pill capsules (decorative bg) ─────────────
+  const pillData = [
+    { x:60,  y:80,  w:120, h:46, r:25,  hL:'#D93B3B', hR:'#A02020' },
+    { x:740, y:50,  w:140, h:52, r:-18, hL:'#9B4FC8', hR:'#6B2A9A' },
+    { x:820, y:200, w:100, h:40, r:40,  hL:'#E8C034', hR:'#B08A00' },
+    { x:30,  y:300, w:90,  h:36, r:-30, hL:'#E05A8A', hR:'#A02060' },
+    { x:880, y:400, w:110, h:44, r:15,  hL:'#3AA8A0', hR:'#1A6860' },
+    { x:50,  y:700, w:130, h:50, r:20,  hL:'#E0713A', hR:'#A04010' },
+    { x:780, y:750, w:95,  h:38, r:-22, hL:'#9B4FC8', hR:'#6B2A9A' },
+    { x:100, y:870, w:110, h:44, r:12,  hL:'#D93B3B', hR:'#A02020' },
+    { x:700, y:870, w:145, h:54, r:-8,  hL:'#E8C034', hR:'#B08A00' },
+    { x:400, y:30,  w:100, h:40, r:5,   hL:'#E05A8A', hR:'#A02060' },
+    { x:360, y:900, w:120, h:46, r:-12, hL:'#3AA8A0', hR:'#1A6860' },
+  ];
+
+  pillData.forEach(p => drawPill(ctx, p.x, p.y, p.w, p.h, p.r, p.hL, p.hR, 0.45));
+
+  // ── White main content area ──────────────────────────────
+  ctx.fillStyle = 'white';
+  roundRect(ctx, 60, 100, W-120, H-200, 24);
+  ctx.fill();
+  ctx.strokeStyle = '#1A0A10';
+  ctx.lineWidth = 4;
+  roundRect(ctx, 60, 100, W-120, H-200, 24);
+  ctx.stroke();
+
+  // Rainbow pill stripe at top of white card
+  const stripeColors = ['#D93B3B','#9B4FC8','#E8C034','#E05A8A','#3AA8A0','#E0713A','#D93B3B','#9B4FC8','#E8C034'];
+  const stripeW = (W-120) / stripeColors.length;
+  ctx.save();
+  // clip to rounded top
+  roundRect(ctx, 60, 100, W-120, 20, {tl:24,tr:24,br:0,bl:0});
+  ctx.clip();
+  stripeColors.forEach((c,i) => {
+    ctx.fillStyle = c;
+    ctx.fillRect(60 + i*stripeW, 100, stripeW+1, 20);
+  });
+  ctx.restore();
+
+  // ── "✦ THE ULTIMATE ✦" eyebrow ──────────────────────────
+  ctx.fillStyle = '#E8156A';
+  ctx.font = 'bold 22px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.letterSpacing = '6px';
+  ctx.fillText('✦  T H E  U L T I M A T E  ✦', W/2, 175);
+
+  // ── Big title: VALLEY ────────────────────────────────────
+  ctx.fillStyle = '#1A0A10';
+  ctx.textAlign = 'center';
+  drawFatText(ctx, 'VALLEY', W/2, 290, 148);
+
+  // ── Three pill capsules ──────────────────────────────────
+  const pillY = 320, pillGap = 90;
+  const pX = W/2 - pillGap;
+  drawPill(ctx, pX - 10,   pillY, 80, 32, 0, '#D93B3B', '#A02020', 1);
+  drawPill(ctx, pX + pillGap - 40, pillY, 80, 32, 0, '#9B4FC8', '#6B2A9A', 1);
+  drawPill(ctx, pX + pillGap*2 - 90, pillY, 80, 32, 0, '#E8C034', '#B08A00', 1);
+
+  // ── "of the" ─────────────────────────────────────────────
+  drawFatText(ctx, 'of the', W/2, 430, 72, '#1A0A10', true);
+
+  // ── Big title: DOLLS ─────────────────────────────────────
+  drawFatText(ctx, 'DOLLS', W/2, 540, 148);
+
+  // ── Divider line ─────────────────────────────────────────
+  ctx.strokeStyle = '#E8156A';
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.moveTo(140, 565); ctx.lineTo(W-140, 565);
+  ctx.stroke();
+
+  // ── Tagline ──────────────────────────────────────────────
+  ctx.fillStyle = '#E8156A';
+  ctx.font = 'italic bold 30px Georgia, serif';
+  ctx.textAlign = 'center';
+  wrapText(ctx, tagline, W/2, 610, W-200, 40);
+
+  // ── BIG SCORE ────────────────────────────────────────────
+  // score circle bg
+  ctx.fillStyle = '#F7C5D5';
+  ctx.beginPath();
+  ctx.arc(W/2, 730, 90, 0, Math.PI*2);
+  ctx.fill();
+  ctx.strokeStyle = '#1A0A10';
+  ctx.lineWidth = 4;
+  ctx.stroke();
+
+  // score number
+  ctx.fillStyle = '#1A0A10';
+  drawFatText(ctx, pct+'%', W/2, 755, 80);
+
+  // ── correct / wrong mini stats ───────────────────────────
+  ctx.font = 'bold 22px sans-serif';
+  ctx.fillStyle = '#1A8C3A';
+  ctx.textAlign = 'center';
+  ctx.fillText(`${correct} correct`, W/2 - 130, 840);
+  ctx.fillStyle = '#E8156A';
+  ctx.fillText(`${20-correct} wrong`, W/2 + 130, 840);
+
+  // ── Small lives pills (for flavour) ─────────────────────
+  const lifeX = W/2 - 2*28;
+  for(let i=0;i<5;i++){
+    const filled = (correct / 20) * 5 > i;
+    drawPill(ctx, lifeX + i*56, 865, 44, 18, 0,
+      filled ? '#D93B3B' : '#E0B0C0',
+      filled ? '#A02020' : '#C090A0', 1);
+  }
+
+  // ── Footer ───────────────────────────────────────────────
+  ctx.fillStyle = '#1A0A10';
+  ctx.font = 'bold 20px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.globalAlpha = 0.45;
+  ctx.fillText('valleyofthedolls-trivia.com  💊', W/2, H - 38);
+  ctx.globalAlpha = 1;
+
+  // Make canvas tappable to save
+  canvas.onclick = downloadCard;
+}
+
+// ── Canvas drawing helpers ───────────────────────────────
+
+function roundRect(ctx, x, y, w, h, r) {
+  if (typeof r === 'number') r = {tl:r,tr:r,br:r,bl:r};
+  ctx.beginPath();
+  ctx.moveTo(x + r.tl, y);
+  ctx.lineTo(x + w - r.tr, y);
+  ctx.quadraticCurveTo(x+w, y,   x+w, y+r.tr);
+  ctx.lineTo(x+w, y+h-r.br);
+  ctx.quadraticCurveTo(x+w, y+h, x+w-r.br, y+h);
+  ctx.lineTo(x+r.bl, y+h);
+  ctx.quadraticCurveTo(x, y+h,   x, y+h-r.bl);
+  ctx.lineTo(x, y+r.tl);
+  ctx.quadraticCurveTo(x, y,     x+r.tl, y);
+  ctx.closePath();
+}
+
+function drawPill(ctx, x, y, w, h, angleDeg, colorL, colorR, opacity) {
+  ctx.save();
+  ctx.globalAlpha = opacity;
+  ctx.translate(x + w/2, y + h/2);
+  ctx.rotate(angleDeg * Math.PI/180);
+  const r = h/2;
+  // left half
+  ctx.fillStyle = colorL;
+  ctx.beginPath();
+  ctx.arc(-w/2 + r, 0, r, Math.PI/2, -Math.PI/2, true);
+  ctx.lineTo(0, -r); ctx.lineTo(0, r);
+  ctx.closePath();
+  ctx.fill();
+  // right half
+  ctx.fillStyle = colorR;
+  ctx.beginPath();
+  ctx.arc(w/2 - r, 0, r, -Math.PI/2, Math.PI/2, false);
+  ctx.lineTo(0, r); ctx.lineTo(0, -r);
+  ctx.closePath();
+  ctx.fill();
+  // dividing line
+  ctx.strokeStyle = 'rgba(255,255,255,0.35)';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(0,-r); ctx.lineTo(0,r); ctx.stroke();
+  // border
+  ctx.strokeStyle = 'rgba(0,0,0,0.2)';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.arc(-w/2+r, 0, r, Math.PI/2, -Math.PI/2, true);
+  ctx.lineTo(w/2-r, -r);
+  ctx.arc(w/2-r, 0, r, -Math.PI/2, Math.PI/2, false);
+  ctx.closePath();
+  ctx.stroke();
+  ctx.restore();
+}
+
+function drawFatText(ctx, text, x, y, size, color='#1A0A10', italic=false) {
+  ctx.save();
+  ctx.fillStyle = color;
+  ctx.font = `${italic?'italic ':''}${size}px 'Arial Black', 'Arial Bold', Impact, sans-serif`;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'alphabetic';
+  // Shadow stack (mimicking the chunky cover look)
+  ctx.shadowColor = '#E8156A';
+  ctx.shadowOffsetX = 4;
+  ctx.shadowOffsetY = 4;
+  ctx.shadowBlur = 0;
+  ctx.fillText(text, x, y);
+  ctx.shadowColor = 'transparent';
+  ctx.fillText(text, x, y);
+  ctx.restore();
+}
+
+function wrapText(ctx, text, x, y, maxWidth, lineH) {
+  const words = text.split(' ');
+  let line = '';
+  let cy = y;
+  for(const word of words){
+    const test = line + word + ' ';
+    if(ctx.measureText(test).width > maxWidth && line){
+      ctx.fillText(line.trim(), x, cy);
+      line = word + ' ';
+      cy += lineH;
+    } else { line = test; }
+  }
+  ctx.fillText(line.trim(), x, cy);
+}
+
+// ── Share actions ────────────────────────────────────────
+
+function getShareText() {
+  const { pct, correct, tagline } = _shareData;
+  return `I scored ${pct}% (${correct}/20) on the Valley of the Dolls Trivia Game! "${tagline}" 💊✨ #ValleyOfTheDolls #Trivia #JacquelineSusann`;
+}
+
+function downloadCard() {
+  const canvas = document.getElementById('shareCanvas');
+  const a = document.createElement('a');
+  a.download = 'my-valley-score.png';
+  a.href = canvas.toDataURL('image/png');
+  a.click();
+}
+
+function shareTwitter() {
+  const text = encodeURIComponent(getShareText());
+  window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
+}
+
+function shareFacebook() {
+  // FB sharer with quote (works without app ID)
+  const quote = encodeURIComponent(getShareText());
+  window.open(`https://www.facebook.com/sharer/sharer.php?quote=${quote}&u=${encodeURIComponent(location.href)}`, '_blank');
+}
+
+function copyShareText() {
+  navigator.clipboard.writeText(getShareText()).then(() => {
+    const btn = document.getElementById('copyBtn');
+    const orig = btn.innerHTML;
+    btn.classList.add('copied');
+    btn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Copied!`;
+    setTimeout(()=>{ btn.classList.remove('copied'); btn.innerHTML=orig; }, 2200);
+  }).catch(()=>{ alert(getShareText()); });
+}
+</script>
+</body>
+</html>
